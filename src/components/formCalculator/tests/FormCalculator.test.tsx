@@ -3,10 +3,10 @@ import FormCalculator from '../FormCalculator'
 
 describe('Description describe', () => {
   test('Should', () => {
-    render(<FormCalculator />)
+    render(<FormCalculator wallText="Parede 1:" />)
 
     expect(
-      screen.getByRole('heading', { name: /Calculadora de Tinta/i })
+      screen.getByRole('heading', { name: /Parede 1:/i })
     ).toBeInTheDocument()
   })
 })
