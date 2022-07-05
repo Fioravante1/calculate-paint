@@ -1,13 +1,13 @@
-import Head from 'next/head'
 import styles from '../../styles/Home.module.scss'
-import Main from '../components/Main'
+import FormCalculator from '../components/formCalculator/FormCalculator'
 
 export default function Home() {
   return (
     <div className={styles.container}>
-      <Head>
-        <Main />
-      </Head>
+      <FormCalculator wallText="Parede 1:" />
+      <FormCalculator wallText="Parede 2:" />
+      <FormCalculator wallText="Parede 3:" />
+      <FormCalculator wallText="Parede 4:" />
     </div>
   )
 }
