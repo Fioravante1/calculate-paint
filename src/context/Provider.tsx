@@ -1,18 +1,12 @@
-import { ReactNode, useState } from 'react'
+import { ReactNode } from 'react'
 import ContextFormCalculate from './Context'
-import { initialContext } from './InitialContext'
 
 type PropsContext = {
   children: ReactNode
 }
 
 function ProviderFormCalculator({ children }: PropsContext) {
-  const [name, setName] = useState(initialContext.name)
-
-  const valueContext = {
-    name,
-    setName
-  }
+  const valueContext = {}
 
   return (
     <ContextFormCalculate.Provider value={valueContext}>
