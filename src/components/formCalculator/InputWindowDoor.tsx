@@ -1,15 +1,31 @@
+import { ChangeEventHandler } from 'react'
+
 type Props = {
   label: string
   numberWindowDoor: number[]
+  onChange: ChangeEventHandler<HTMLSelectElement>
+  nameSelect: string
+  valueSelect: number
 }
 
-function InputWindowDoor({ label, numberWindowDoor }: Props) {
+function InputWindowDoor({
+  label,
+  numberWindowDoor,
+  nameSelect,
+  valueSelect,
+  onChange
+}: Props) {
   return (
     <label htmlFor="InputWindowDoor">
       {label}
-      <select name="" id="InputWindowDoor">
-        {numberWindowDoor.map((valueWindowDoor) => (
-          <option key={valueWindowDoor} value={valueWindowDoor}>
+      <select
+        onChange={onChange}
+        value={valueSelect}
+        name={nameSelect}
+        id="InputWindowDoor"
+      >
+        {numberWindowDoor.map((valueWindowDoor, index) => (
+          <option key={index} value={valueWindowDoor}>
             {valueWindowDoor}
           </option>
         ))}
