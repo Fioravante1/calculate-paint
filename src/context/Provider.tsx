@@ -3,12 +3,7 @@ import {
   wallHeightWidthState,
   totalLitersState
 } from 'helpers/initialStates'
-import {
-  areaTotal,
-  calculateArea,
-  calculateAreaWindow,
-  calculateAreaDoor
-} from 'helpers/calculatePaint'
+import { areaTotal, calculateArea } from 'helpers/calculatePaint'
 import { ReactNode, useEffect, useState } from 'react'
 import ContextFormCalculate from './Context'
 import {
@@ -17,13 +12,14 @@ import {
   StateWindowDoor
 } from 'helpers/types/types'
 import { SetInputsProp } from './types/types'
+import { validationAreaWall, validationDisableBtn } from 'helpers/validations'
 
 type PropsContext = {
   children: ReactNode
 }
 
 function ProviderFormCalculator({ children }: PropsContext) {
-  const [inputWallHeight, setInputWallHeight] =
+  const [inputWall, setInputWall] =
     useState<StateHeightWidth>(wallHeightWidthState)
   const [inputDoorWindow, setInputDoorWindow] =
     useState<StateWindowDoor>(doorWindowState)
@@ -32,25 +28,25 @@ function ProviderFormCalculator({ children }: PropsContext) {
   const [inputWallWidth, setInputWallWidth] = useState<number>(0)
   const [totalHeight, setTotalHeight] = useState<number>(0)
   const [totalWidth, setTotalWidth] = useState<number>(0)
-  const [totalDoor, setTotalDoor] = useState<number>(0)
-  const [totalWindow, setTotalWindow] = useState<number>(0)
   const [areaWalls, setAreaWalls] = useState<object>({})
-  const [areaPintar, setAreaPintar] = useState<number>(0)
+  const [paintArea, setPaintArea] = useState<number>(0)
+  const [messageWarning, setMessageWarning] = useState<string>('')
+  const [disabled, setDisebled] = useState(false)
 
   function setInputWallsSize(values: SetInputsProp) {
     if (`Altura${values.index}` === values.name) {
-      setInputWallHeight({
-        ...inputWallHeight,
+      setInputWall({
+        ...inputWall,
         altura: {
-          ...inputWallHeight.altura,
+          ...inputWall.altura,
           [values.name]: Number(values.value) || 0
         }
       })
     } else {
-      setInputWallHeight({
-        ...inputWallHeight,
+      setInputWall({
+        ...inputWall,
         largura: {
-          ...inputWallHeight.largura,
+          ...inputWall.largura,
           [values.name]: Number(values.value) || 0
         }
       })
@@ -95,18 +91,21 @@ function ProviderFormCalculator({ children }: PropsContext) {
   }
 
   useEffect(() => {
-    const areaWalls = calculateArea(inputWallHeight)
-    const calculateAreaTotal = areaTotal({ areaWalls, totalDoor, totalWindow })
-    const sumDoor = calculateAreaDoor(inputDoorWindow)
-    const sumWindow = calculateAreaWindow(inputDoorWindow)
-    setTotalWindow(sumWindow)
-    setTotalDoor(sumDoor)
-    setAreaPintar(calculateAreaTotal)
-  }, [inputWallHeight, inputDoorWindow, totalWindow, totalDoor])
+    const validation = validationAreaWall(inputWall, inputDoorWindow)
+    const validationDisable = validationDisableBtn(validation.validationDisable)
+    setMessageWarning(validation.warning)
+    setDisebled(validationDisable)
+  }, [inputWall, inputDoorWindow])
+
+  useEffect(() => {
+    const areaWalls = calculateArea(inputWall)
+    const calculateAreaTotal = areaTotal({ areaWalls, inputDoorWindow })
+    setPaintArea(calculateAreaTotal)
+  }, [inputWall, inputDoorWindow])
 
   const valueContext = {
-    inputWallHeight,
-    setInputWallHeight,
+    inputWall,
+    setInputWall,
     inputWallWidth,
     setInputWallWidth,
     inputDoorWindow,
@@ -115,15 +114,15 @@ function ProviderFormCalculator({ children }: PropsContext) {
     setInputs,
     totalHeight,
     totalWidth,
-    totalDoor,
-    totalWindow,
     areaWalls,
-    areaPintar,
+    paintArea,
     totalLiters,
     setTotalLiters,
     setTotalHeight,
     setTotalWidth,
-    setAreaWalls
+    setAreaWalls,
+    messageWarning,
+    disabled
   }
 
   return (

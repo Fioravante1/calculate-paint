@@ -10,11 +10,11 @@ import ButtonSubmit from './Button'
 import { calculateTotalCain } from 'helpers/calculatePaint'
 
 function FormCalculator() {
-  const { setInputs, setTotalLiters, areaPintar } =
+  const { setInputs, setTotalLiters, paintArea, disabled, messageWarning } =
     useContext(ContextFormCalculate)
   function handleOnClick(event) {
     event.preventDefault()
-    const totalCain = calculateTotalCain(areaPintar)
+    const totalCain = calculateTotalCain(paintArea)
     setTotalLiters(totalCain)
   }
 
@@ -77,10 +77,11 @@ function FormCalculator() {
         <ButtonSubmit
           type="submit"
           onClick={handleOnClick}
-          disabled={false}
+          disabled={disabled}
           titleBtn="Calcular"
         />
       </form>
+      <h3>{messageWarning}</h3>
     </>
   )
 }

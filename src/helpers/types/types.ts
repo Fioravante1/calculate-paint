@@ -16,8 +16,12 @@ export type StateTotalLiters = {
   canPaint180: object
 }
 
+type WindowDoor = {
+  window: object
+  door: object
+}
+
 export type PropsCalculateAreaTotal = {
   areaWalls: object
-  totalDoor: number
-  totalWindow: number
+  inputDoorWindow: WindowDoor
 }
