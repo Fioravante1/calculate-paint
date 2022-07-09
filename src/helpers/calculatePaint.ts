@@ -16,12 +16,15 @@ export function calculateArea(inputWallSize: StateHeightWidth): object {
 }
 
 export function areaTotal(propsAreaTotal: PropsCalculateAreaTotal) {
-  const totalWindowDoor = propsAreaTotal.totalDoor + propsAreaTotal.totalWindow
-  let totalArea = 0
+  let totalAreaWall = 0
+  let totalAreaWindow = 0
+  let totalAreaDoor = 0
   for (let i = 0; i < walls.length; i++) {
-    totalArea += propsAreaTotal.areaWalls[`TotalWall${i + 1}`] || 0
+    totalAreaWall += propsAreaTotal.areaWalls[`TotalWall${i + 1}`] || 0
+    totalAreaWindow += propsAreaTotal.inputDoorWindow.window[`Window${i}`] || 0
+    totalAreaDoor += propsAreaTotal.inputDoorWindow.door[`Door${i}`] || 0
   }
-  return totalArea - totalWindowDoor
+  return totalAreaWall - (totalAreaWindow + totalAreaDoor)
 }
 
 export function calculateTotalCain(areaPintar: number) {
