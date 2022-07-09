@@ -1,32 +1,29 @@
-export const heightWall = [
-  {
-    selectWindow: 'selectWindow 1',
-    selectDoor: 'selectDoor 1',
-    numberWall: 'Parede 1',
-    numberWallHeight: 'ParedeHeight1',
-    numberWallWidth: 'ParedeWidth1'
-  },
-  {
-    selectWindow: 'selectWindow 2',
-    selectDoor: 'selectDoor 2',
-    numberWall: 'Parede 2',
-    numberWallHeight: 'ParedeHeight2',
-    numberWallWidth: 'ParedeWidth2'
-  },
-  {
-    selectWindow: 'selectWindow 3',
-    selectDoor: 'selectDoor 3',
-    numberWall: 'Parede 3',
-    numberWallHeight: 'ParedeHeight3',
-    numberWallWidth: 'ParedeWidth3'
-  },
-  {
-    selectWindow: 'selectWindow 4',
-    selectDoor: 'selectDoor 4',
-    numberWall: 'Parede 4',
-    numberWallHeight: 'ParedeHeight4',
-    numberWallWidth: 'ParedeWidth4'
-  }
-]
+import {
+  StateHeightWidth,
+  StateTotalLiters,
+  StateWindowDoor
+} from './types/types'
 
-export const quantityWindonDoor = [0, 1, 2, 3, 4, 5]
+export const wallHeightWidthState: StateHeightWidth = {
+  altura: {},
+  largura: {}
+}
+
+export const doorWindowState: StateWindowDoor = {
+  door: {},
+  window: {}
+}
+
+export const totalLitersState: StateTotalLiters = {
+  totalArea: 0,
+  canPaint05: { canPaint05: 0, count: 0 },
+  canPaint25: { canPaint25: 0, count: 0 },
+  canPaint36: { canPaint36: 0, count: 0 },
+  canPaint180: { canPaint180: 0, count: 0 }
+}
+
+export const quantityWindonDoor: number[] = [0, 1, 2, 3, 4, 5, 6]
+
+export const walls: number[] = [1, 2, 3, 4]
+
+export const cans: number[] = [18, 3.6, 2.5, 0.5]
