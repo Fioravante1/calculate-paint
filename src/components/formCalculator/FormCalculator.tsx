@@ -1,53 +1,86 @@
-import InputWalls from './InputWalls'
-import InputWindowDoor from './InputWindowDoor'
 import styles from '../styles/formCalculator.module.scss'
-import { FormEvent, useState } from 'react'
-import { heightWall, quantityWindonDoor } from '../../helpers/initialStates'
+import { quantityWindonDoor, walls } from '../../helpers/initialStates'
+import InputWallHeight from './InputWallHeight'
+import InputWallWidth from './InputWallWidth'
+import InputDoor from './InputDoor'
+import InputWindow from './InputWindow'
+import { useContext } from 'react'
+import ContextFormCalculate from 'context/Context'
+import ButtonSubmit from './Button'
+import { calculateTotalCain } from 'helpers/calculatePaint'
 
 function FormCalculator() {
-  const [walls, setWalls] = useState(heightWall)
-
-  function handleOnChange(index: number, { target }: FormEvent) {
-    const { name, value } = target as HTMLInputElement
-    const newArrWalls = [...walls]
-    newArrWalls[index][name] = value
-    setWalls(newArrWalls)
+  const { setInputs, setTotalLiters, areaPintar } =
+    useContext(ContextFormCalculate)
+  function handleOnClick(event) {
+    event.preventDefault()
+    const totalCain = calculateTotalCain(areaPintar)
+    setTotalLiters(totalCain)
   }
+
   return (
     <>
-      {walls.map((formValue, index) => (
-        <div key={index}>
-          <h1>{formValue.numberWall}</h1>
-          <form className={styles.formCalculator}>
-            <InputWalls
-              handleOnChange={(event) => handleOnChange(index, event)}
-              valueInput={formValue[`paredeHeight${index + 1}`]}
-              heightWidth={formValue.numberWallHeight}
-              labelWall="Altura(m)"
+      <form className={styles.formCalculator}>
+        {walls.map((value, index) => (
+          <div className={styles.container__inputs} key={index}>
+            <h1 className="wall-title">Parede {value}: </h1>
+            <InputWallHeight
+              index={index}
+              onChange={({ target }) =>
+                setInputs({
+                  index,
+                  name: target.name,
+                  key: target.name,
+                  value: target.value
+                })
+              }
             />
-            <InputWalls
-              handleOnChange={(event) => handleOnChange(index, event)}
-              valueInput={formValue[`paredeWidth${index + 1}`]}
-              heightWidth={formValue.numberWallWidth}
-              labelWall="Largura(m)"
+            <InputWallWidth
+              index={index}
+              onChange={({ target }) =>
+                setInputs({
+                  index,
+                  name: target.name,
+                  key: target.name,
+                  value: target.value
+                })
+              }
             />
-            <InputWindowDoor
-              valueSelect={formValue[`selectDoor${index + 1}`]}
-              nameSelect={formValue.selectWindow}
-              onChange={(event) => handleOnChange(index, event)}
-              label="Quantidade de janelas?"
-              numberWindowDoor={quantityWindonDoor}
-            />
-            <InputWindowDoor
-              valueSelect={formValue[`selectWindow${index + 1}`]}
-              nameSelect={formValue.selectDoor}
-              onChange={(event) => handleOnChange(index, event)}
-              label="Quantidade de portas?"
-              numberWindowDoor={quantityWindonDoor}
-            />
-          </form>
-        </div>
-      ))}
+            <div>
+              <InputDoor
+                onChange={({ target }) =>
+                  setInputs({
+                    index,
+                    name: target.name,
+                    key: target.name,
+                    value: target.value
+                  })
+                }
+                index={index}
+                numberWindowDoor={quantityWindonDoor}
+              />
+              <InputWindow
+                onChange={({ target }) =>
+                  setInputs({
+                    index,
+                    name: target.name,
+                    key: target.name,
+                    value: target.value
+                  })
+                }
+                index={index}
+                numberWindowDoor={quantityWindonDoor}
+              />
+            </div>
+          </div>
+        ))}
+        <ButtonSubmit
+          type="submit"
+          onClick={handleOnClick}
+          disabled={false}
+          titleBtn="Calcular"
+        />
+      </form>
     </>
   )
 }
