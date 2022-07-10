@@ -1,34 +1,39 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-## Getting Started
+# Boas vindas ao repositório do projeto Calculator Paint
 
-First, run the development server:
+O app ajuda o usuário a calcular a quantidade de tinta necessária para pintar suas paredes. Com base na quantidade necessária o sistema deve aponta os tamanhos das latas de tinta que o usuário deve comprar.
 
-```bash
-npm run dev
-# or
-yarn dev
-```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Regras de uso
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+- Nenhuma parede pode ter menos de 1 metro quadrado nem mais de 50 metros quadrados.
+- O total de área das portas e janelas deve ser no máximo 50% da área de parede.
+- Caso sua parede tenha porta, sua parede deve ter no minimo 2.20m de altura.
+- O botão para cálculo só será desabilitado caso todos os campos sejam preenchidos.
+- O botão ficará desabilitado se as condições não sejam atentidas.
+## Instalação
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+Veja oprojeto com yarn ou npm
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+- Clone o repositório em uma pasta local
+```git clone```
+- Entre na pasta do projeto
+```cd calculator-paint```
+- Instale as dependências
+```yarn install```
+- Execute a aplicação
+```yarn dev```
 
-## Learn More
+Você pode executar o projeto com o docker!
 
-To learn more about Next.js, take a look at the following resources:
+- Clone o projeto
+- Entre na pasta do projeto
+- Faça o build da aplicação com o docker
+```docker build -t fioravante/calculatepaint . ```
+- Coloque o app no servidor local com o docker
+```docker run -p 3000:3000 -d fioravante/calculatepaint```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+- Para rodar os testes
+```yarn test```
+ou
+```yarn test:watch```
