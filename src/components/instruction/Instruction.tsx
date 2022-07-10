@@ -1,6 +1,6 @@
 import styles from './styles/Instruction.module.scss'
 
-function Intruction() {
+function Instruction() {
   return (
     <>
       <div className={styles.container__title__subtitle}>
@@ -13,7 +13,7 @@ function Intruction() {
       </div>
 
       <div className={styles.container__instruction}>
-        <ol>
+        <ol aria-label="list-instruction">
           <li>
             Nenhuma parede pode ter menos de 1 metro quadrado nem mais de 50
             metros quadrados.
@@ -39,4 +39,4 @@ function Intruction() {
   )
 }
 
-export default Intruction
+export default Instruction

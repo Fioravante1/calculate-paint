@@ -2,9 +2,10 @@ import { PropsInputsWalls } from './types/types'
 
 function InputWallHeight({ onChange, index }: PropsInputsWalls) {
   return (
-    <label htmlFor="">
+    <label htmlFor="Altura">
       Altura(m)
       <input
+        id="Altura"
         placeholder="0"
         name={`Altura${index}`}
         onChange={onChange}

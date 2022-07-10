@@ -1,5 +1,5 @@
 import styles from './styles/Table.module.scss'
-import ContextFormCalculate from 'context/Context'
+import ContextFormCalculate from '../../context/Context'
 import { useContext } from 'react'
 
 function Table() {

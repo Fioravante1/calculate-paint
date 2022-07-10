@@ -1,7 +1,7 @@
-import Table from 'components/table/Table'
+import Table from '../components/table/Table'
 import styles from '../styles/Home.module.scss'
 import FormCalculator from '../components/formCalculator/FormCalculator'
-import Intruction from 'components/instruction/Intruction'
+import Instruction from '../components/instruction/Instruction'
 
 export default function Home() {
   return (
@@ -12,7 +12,7 @@ export default function Home() {
           <Table />
         </div>
         <div className={styles.container__instruction}>
-          <Intruction />
+          <Instruction />
         </div>
       </div>
     </div>

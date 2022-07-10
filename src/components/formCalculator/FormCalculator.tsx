@@ -5,9 +5,9 @@ import InputWallWidth from './InputWallWidth'
 import InputDoor from './InputDoor'
 import InputWindow from './InputWindow'
 import { useContext } from 'react'
-import ContextFormCalculate from 'context/Context'
+import ContextFormCalculate from '../../context/Context'
 import ButtonSubmit from './Button'
-import { calculateTotalCain } from 'helpers/calculatePaint'
+import { calculateTotalCain } from '../../helpers/calculatePaint'
 
 function FormCalculator() {
   const { setInputs, setTotalLiters, paintArea, disabled, messageWarning } =
