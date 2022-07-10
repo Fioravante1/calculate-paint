@@ -1,4 +1,5 @@
 import { PropsInputsWindowDoor } from './types/types'
+import styles from './styles/Form.module.scss'
 
 function InputWindow({
   numberWindowDoor,
@@ -6,16 +7,20 @@ function InputWindow({
   index
 }: PropsInputsWindowDoor) {
   return (
-    <label htmlFor="InputWindowDoor">
-      Quantidade de janelas?
-      <select onChange={onChange} name={`Window${index}`}>
-        {numberWindowDoor.map((valueWindowDoor, index) => (
-          <option key={index} value={valueWindowDoor}>
-            {valueWindowDoor}
-          </option>
-        ))}
-      </select>
-    </label>
+    <>
+      <div className={styles.container__label}>
+        <label htmlFor="InputWindowDoor">Quantidade de janelas?</label>
+      </div>
+      <div className={styles.container__input_window__door}>
+        <select onChange={onChange} name={`Window${index}`}>
+          {numberWindowDoor.map((valueWindowDoor, index) => (
+            <option key={index} value={valueWindowDoor}>
+              {valueWindowDoor}
+            </option>
+          ))}
+        </select>
+      </div>
+    </>
   )
 }
 

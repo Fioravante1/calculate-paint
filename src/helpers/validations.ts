@@ -39,7 +39,7 @@ export function validationAreaWall(
     }
     if (door >= 1.52 && heigth < 2.2) {
       return {
-        warning: 'Altura da parede deve ser maior que 2.20m2!',
+        warning: 'Altura da parede deve ser maior que 2.20m!',
         validationDisable: true
       }
     }

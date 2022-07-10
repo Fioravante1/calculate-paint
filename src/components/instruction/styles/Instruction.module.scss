@@ -1,0 +1,43 @@
+.container__title__subtitle {
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    h1 {
+        font-size: 32px;
+        margin-bottom: 16px;
+    }
+
+    h2 {
+        font-size: 18px;
+    }
+}
+
+.container__title__instruction {
+    height: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-left: 20px;
+
+
+    h1 {
+        font-size: 32px;
+    }
+}
+
+.container__instruction {
+    height: 500px;
+
+
+    ol {
+        height: 100%;
+        padding-left: 30px;
+        padding-right: 20px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+    }
+}

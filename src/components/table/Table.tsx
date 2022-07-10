@@ -1,10 +1,11 @@
+import styles from './styles/Table.module.scss'
 import ContextFormCalculate from 'context/Context'
 import { useContext } from 'react'
 
 function Table() {
   const { totalLiters } = useContext(ContextFormCalculate)
   return (
-    <div>
+    <div className={styles.container__table}>
       <h2>{`Área total de parede: ${totalLiters.totalArea}m2`}</h2>
       <table>
         <thead>

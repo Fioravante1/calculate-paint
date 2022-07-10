@@ -1,3 +1,5 @@
+import '../styles/reset.scss'
+import '../styles/global.scss'
 import ProviderFormCalculator from '../context/Provider'
 import type { AppProps } from 'next/app'
 

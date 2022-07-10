@@ -1,0 +1,16 @@
+body {
+    font-family: 'Okta Neue', 'Open Sans', Arial, Helvetica, sans-serif;
+    color: var(--rods-color-text-secondary);
+    overflow-x: hidden;
+    width: 100%;
+
+    h1 {
+      background-image: linear-gradient(#610C63, #1A4D2E, #1363DF);
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      color: #000;
+    }
+}
+
+

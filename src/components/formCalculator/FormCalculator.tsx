@@ -1,4 +1,4 @@
-import styles from '../styles/formCalculator.module.scss'
+import styles from './styles/Form.module.scss'
 import { quantityWindonDoor, walls } from '../../helpers/initialStates'
 import InputWallHeight from './InputWallHeight'
 import InputWallWidth from './InputWallWidth'
@@ -20,33 +20,36 @@ function FormCalculator() {
 
   return (
     <>
-      <form className={styles.formCalculator}>
+      <form className={styles.form__calculate}>
         {walls.map((value, index) => (
           <div className={styles.container__inputs} key={index}>
-            <h1 className="wall-title">Parede {value}: </h1>
-            <InputWallHeight
-              index={index}
-              onChange={({ target }) =>
-                setInputs({
-                  index,
-                  name: target.name,
-                  key: target.name,
-                  value: target.value
-                })
-              }
-            />
-            <InputWallWidth
-              index={index}
-              onChange={({ target }) =>
-                setInputs({
-                  index,
-                  name: target.name,
-                  key: target.name,
-                  value: target.value
-                })
-              }
-            />
-            <div>
+            <h1>Parede {value}: </h1>
+            <div className={styles.container__inputs__walls}>
+              <InputWallHeight
+                index={index}
+                onChange={({ target }) =>
+                  setInputs({
+                    index,
+                    name: target.name,
+                    key: target.name,
+                    value: target.value
+                  })
+                }
+              />
+              <InputWallWidth
+                index={index}
+                onChange={({ target }) =>
+                  setInputs({
+                    index,
+                    name: target.name,
+                    key: target.name,
+                    value: target.value
+                  })
+                }
+              />
+            </div>
+
+            <div className={styles.container__input__door}>
               <InputDoor
                 onChange={({ target }) =>
                   setInputs({
@@ -59,6 +62,9 @@ function FormCalculator() {
                 index={index}
                 numberWindowDoor={quantityWindonDoor}
               />
+            </div>
+
+            <div className={styles.container__input__door}>
               <InputWindow
                 onChange={({ target }) =>
                   setInputs({
@@ -74,14 +80,16 @@ function FormCalculator() {
             </div>
           </div>
         ))}
+      </form>
+      <h3 className={styles.message__warning}>{messageWarning}</h3>
+      <div className={styles.container__btn}>
         <ButtonSubmit
           type="submit"
           onClick={handleOnClick}
           disabled={disabled}
           titleBtn="Calcular"
         />
-      </form>
-      <h3>{messageWarning}</h3>
+      </div>
     </>
   )
 }

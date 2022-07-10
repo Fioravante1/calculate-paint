@@ -5,6 +5,7 @@ function InputWallWidth({ onChange, index }: PropsInputsWalls) {
     <label htmlFor="">
       Largura(m)
       <input
+        placeholder="0"
         name={`Largura${index}`}
         onChange={onChange}
         type="number"
